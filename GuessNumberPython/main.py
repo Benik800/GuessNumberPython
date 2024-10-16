@@ -69,11 +69,22 @@ def index():
             session['answer'] = f"Загаданное число больше, чем {userNumber}"
             session['prevAttempts'] += ("" if session['prevAttempts'] == "" else ", ") + str(userNumber)
             return render_template("index.html", min=minValue, max=maxValue, maxAttempts = session['maxAttempts'], currentAttempts= session['currentAttempts'], prevAttempts=session['prevAttempts'], message=session['message'], answer= session['answer'], victory = session['victory'])
+
     if request.method == 'GET':
         if 'restart' in request.args:
             session.clear()
             return redirect(url_for('index'))
-        return render_template("index.html", min=minValue, max=maxValue, maxAttempts=session['maxAttempts'], currentAttempts=session['currentAttempts'], prevAttempts=session['prevAttempts'],  message=session['message'], answer=session['answer'], victory=session['victory'])
+        return render_template("index.html", min=minValue, max=maxValue, maxAttempts=session['maxAttempts'],
+                               currentAttempts=session['currentAttempts'], prevAttempts=session['prevAttempts'],
+                               message=session['message'], answer=session['answer'], victory=session['victory'])
+
+    if 'victory' in session and session['victory'] == 1:
+        return render_template("index.html", min=minValue, max=maxValue, maxAttempts=session['maxAttempts'], currentAttempts=session['currentAttempts'], prevAttempts=session['prevAttempts'], message=session['message'], answer=session['answer'], victory=session['victory'])
+
+    if 'victory' in session and session['victory'] == 0:
+        return render_template("index.html", min=minValue, max=maxValue, maxAttempts=session['maxAttempts'], currentAttempts=session['currentAttempts'], prevAttempts=session['prevAttempts'], message=session['message'], answer=session['answer'], victory=session['victory'])
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
