@@ -43,7 +43,7 @@ def index():
             return render_template("index.html", min=minValue, max=maxValue, maxAttempts=session['maxAttempts'], currentAttempts=session['currentAttempts'], prevAttempts=session['prevAttempts'], message=session['message'], answer=session['answer'], victory = session['victory'])
         elif userNumber==session['guessedNumber'] and session['currentAttempts'] > 0:
             session['victory'] = 1
-            session['currentAttempts'] -= 1
+            session['currentAttempts'] = 0
             session['message'] = printMessage(session['currentAttempts'])
             session['answer'] =  f"Поздравляем! Вы победили! Загаданное число было {session['guessedNumber']}"
             session['prevAttempts'] += ("" if session['prevAttempts'] == "" else ", ") + str(userNumber)
