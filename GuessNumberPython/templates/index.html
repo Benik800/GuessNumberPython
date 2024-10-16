@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+          <p class="rules" id="rule__one">
+            Компьютер загадывает число в диапазоне [<span id="min">{{ min }}</span>;<span id="max">{{ max }}</span>].
+          </p>
+          <p class="rules" id="rule__two">
+            У пользователя есть <span id="count">{{ maxAttempts }}</span> попыток угадать это число.
+          </p>
+          <form
+            id="guessForm"
+            class="d-flex justify-content-between align-items-start">
+            <div class="d-flex form-group">
+              <input type="number" name="userNumber" class="form-control" id="guess" placeholder="Введите число" required>
+            </div>
+            <div class="form-btn d-flex justify-content-center align-items-center">
+              <button type="submit" formmethod="post" id="submit" class="btn btn__ btn-primary px-4">
+                Ввод
+              </button>
+              <button type="submit" id="reset" formmethod="get" name="restart" formnovalidate class="btn btn__ btn-warning px-4">
+                Заново
+              </button>
+            </div>
+          </form>
+          <div class="container other d-flex flex-column align-items-start mt-2">
+            <p class="answer" id="answer">{{ answer }}</p>
+            <p class="prev__numbers" id="prev">Введённые ранее числа: {{ prevAttempts }}</p>
+           <div style = "text-align: center">
+             <p style= "font-weight: bold">
+                 {{ message }}
+             </p>
+           </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById("guess").focus();
+        let Attempts = {{ currentAttempts }};
+        let victory = {{ victory }};
+        if (Attempts === 0 && victory !== 1) {
+            document.getElementById("guess").setAttribute("disabled", true);
+            document.getElementById("submit").setAttribute("disabled", true);
+            document.getElementById("reset").focus();
+            document.getElementById("guess").style.backgroundColor = "red";
+        }
+        if (victory === 1) {
+            document.getElementById("guess").setAttribute("disabled", true);
+            document.getElementById("submit").setAttribute("disabled", true);
+            document.getElementById("reset").focus();
+            document.getElementById("guess").style.backgroundColor = "yellow";
+        }
+        });
+    </script>
+  <script src="{{ url_for('static',filename='js/bootstrap.min.js')}}"></script>
+{% endblock %}
+
+

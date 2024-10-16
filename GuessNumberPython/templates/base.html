@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='images/game-launcher-svgrepo-com.svg')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/TiltNeon-Regular.ttf')}}" >
+    <title>Угадай число</title>
+  </head>
+  <body>
+  <header class="bg-dark text-center p-4">Guess the Number</header>
+    <section id="game" class="container mt-5">
+      <div class="g row align-items-center justify-content-center">
+        <div class="col-md-10">
+          <h2>Игра «Угадай число»</h2>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>

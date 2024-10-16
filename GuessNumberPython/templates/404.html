@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h3 style="padding-top: 20px; text-align:center; color:red; font-weight: bold">Ой-ой-ой, похоже, вы перешли на страницу, которой не существует! </h3>
+  <div style="text-align: center;">
+      <a style="margin-top: 40px; padding:10px; width: 70%; " href="{{ url_for('index') }}" class="btn btn-info px-4;">Нажмите здесь, чтобы вернуться к игре</a>
+  </div>
+
+{% endblock %}
